@@ -16,8 +16,9 @@ Anything a newcomer would ask about in their first week:
 - **Roadmap**: what's planned, what's in progress, what's been dropped
 - **Meeting notes**: date, attendees, outcomes, action items
 - **Pitch and branding**: pitch deck, messaging, positioning, visual identity
-- **How the team works**: rituals, tools, communication norms, workflows
+- **How the team works** (`09-how-we-work/`): who's on the team, rituals, tools, communication norms, workflows. Operations content does not go here.
 - **Tech docs**: architecture, setup, how things are built and why
+- **Operations** (`10-operations/`): suppliers and partners, fulfillment, freight, insurance. Include the terms that matter and the reasoning behind each.
 
 When adding a document, include the decision or reasoning ("why"), not only the outcome ("what").
 
@@ -43,6 +44,7 @@ Every area has one named owner, never "the team". The owner keeps their area acc
 | Tech docs | Ihor Butenko (as whoever built the thing) |
 | Meeting notes | Ihor Butenko |
 | How we work (process, norms) | Ihor Butenko |
+| Operations (suppliers, fulfillment, freight, insurance) | Ihor Butenko |
 
 **Ihor works on this project alone, so Ihor owns every area.** When people join, update this table: give each area one person, and tech docs go to whoever built the component.
 
