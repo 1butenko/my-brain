@@ -1,27 +1,18 @@
 ---
-title: Team, suppliers and partners
+title: Suppliers and partners
 owner: Ihor Butenko
 status: final
 date: 2026-11-03
-type: process
+type: other
 ---
 
-# Team, suppliers and partners
+# Suppliers and partners
 
 **Source:** the contacts list (`list.docx`, inbox, founder-q3), plus the signed Tidewater agreement and the insurance certificate.
 
 Harbor & Pine Goods LLC is based at 118 Wharf Street, Portland, ME 04101.
 
-## Team
-
-| Person | Role |
-|---|---|
-| Dana Okafor | Founder |
-| Marcus | Ops |
-| Priya | Marketing |
-| Tobi | Customer |
-| Sam | Studio (part time) |
-| Elena | Studio (part time) |
+For who's on our own team, see [team](../09-how-we-work/team.md).
 
 ## Suppliers and partners
 
