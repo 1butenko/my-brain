@@ -22,9 +22,13 @@ Why these rules exist: a deal created from a misread contract puts a wrong numbe
 
 ## 2. Extractor and verifier disagree
 
-- **Condition:** the verifier returns `mismatch` for any field, or `amount_in_words` doesn't equal `amount` in numbers.
-- **Fields:** every extracted field, plus `amount_in_words` against `amount`.
-- **Example:** page 2 says "$12,000 (ten thousand US dollars)", so the amount in words differs from the number.
+- **Condition:** any of these is true:
+  - the verifier returns `mismatch` for any field
+  - the verifier returns `wrong_type` or `not_found` for any claimed clause: the two agents disagree about what a clause is
+  - `amount_in_words` doesn't equal `amount` in numbers
+- **Fields:** every extracted field, every entry in `extra_clauses`, plus `amount_in_words` against `amount`.
+- **Example:** page 2 says "$12,000 (ten thousand US dollars)", so the amount in words differs from the number. Or: the extractor labels clause 6.1 `exclusivity`, but the clause says no exclusivity is granted, so the verifier returns `wrong_type`.
+- **Why it changed (2026-11-05):** the verifier first got only clause types, with no location, so it could confirm a clause existed but not challenge its label. On contract 01 it missed a "no exclusivity" clause labelled exclusivity and standard items labelled custom.
 
 ## 3. Amount below the price list
 
@@ -40,18 +44,25 @@ Why these rules exist: a deal created from a misread contract puts a wrong numbe
 
 ## 5. Clause outside the standard package
 
-- **Condition:** the extractor's `extra_clauses`, or the verifier's unreported findings, include exclusivity, usage rights, a perpetual license, extra revision rounds, or a custom deliverable.
-- **Fields:** `extra_clauses`, and the verifier's `unreported`.
-- **Example:** page 4 says "Creator grants Brand a perpetual, worldwide license to use the content".
+- **Condition:** the contract, judged on the quoted text and not on the type label, contains any of these:
+  - **exclusivity or category protection** that the contract actually grants. A clause saying no exclusivity is granted doesn't count, because the standard terms say the same.
+  - **usage rights** beyond performing the agreement and promoting the event, for example use of the other party's content or brand after the term, in paid ads, or with the right to sublicense. A mutual, non-exclusive name and logo licence limited to performing the agreement or promoting the event is standard and doesn't count.
+  - a **perpetual license**, of any scope.
+  - **extra revision rounds**.
+  - a **custom deliverable**: any deliverable that isn't in the matched price-list package. The extractor's `custom_deliverable` label is ignored; the gatekeeper compares the deliverables with the price list itself.
+- **Fields:** `extra_clauses`, `deliverables`, the verifier's `unreported`, and the price list.
+- **Example:** page 4 says "Creator grants Brand a perpetual, worldwide license to use the content". Counter-example: "Each Party grants the other a non-exclusive, royalty-free licence to use its name and logo solely to perform this Agreement" doesn't fire.
+- **Why it changed (2026-11-05):** the first runs on contracts 01 and 02 fired on clause labels alone: a clause denying exclusivity, a standard mutual logo licence, and Gold-package items labelled custom. That buried the clauses that actually matter.
 
 ## 6. Dates look wrong
 
 - **Condition:** any of these is true:
   - `end_date` is before `start_date`
-  - `start_date` is before the run date
+  - `end_date` is before the run date: the contract has already ended
   - a date is written in an ambiguous format where day and month can both be 12 or less, such as `03/04/2026`
 - **Fields:** `start_date`, `end_date` (judged on the exact quote, not the normalised value).
 - **Example:** "Campaign starts 03/04/2026" could be 3 April or 4 March.
+- **Why it changed (2026-11-05):** the first version fired when `start_date` was before the run date. Contracts are processed after signing, so that was true for almost every contract, including 01 and 02. An already-ended contract is the case that's really wrong.
 
 ## 7. Unsigned or marked draft
 

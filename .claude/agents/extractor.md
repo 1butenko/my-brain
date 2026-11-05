@@ -27,7 +27,7 @@ Read the whole PDF. Return **only** this JSON, with no text before or after it:
     "draft_marker":    {"value": null, "page": null, "quote": null}
   },
   "extra_clauses": [
-    {"type": "<exclusivity | usage_rights | perpetual_license | extra_revisions | custom_deliverable | other>", "page": 0, "quote": "<exact text>"}
+    {"type": "<exclusivity | usage_rights | perpetual_license | extra_revisions | custom_deliverable | other>", "clause_ref": "<clause number or label as printed, e.g. 6.1 or Schedule A, A5>", "page": 0, "quote": "<exact text>"}
   ]
 }
 ```
@@ -41,4 +41,5 @@ Rules:
 - `start_date`, `end_date`: `YYYY-MM-DD` only if the date is unambiguous. If it's ambiguous, such as `03/04/2026`, set `value` to the raw text and keep the quote.
 - `signed`: `yes` only if signatures or signed names and dates are present for both parties; `no` if the signature block is empty; otherwise `unclear`.
 - `draft_marker`: `yes` if the document says draft, version for review, watermark "DRAFT", or similar; otherwise `no`.
-- `extra_clauses`: every clause about exclusivity, usage rights, licences, revision rounds, or deliverables beyond a standard post. Empty list if none.
+- `extra_clauses`: every clause about exclusivity, usage rights, licences, revision rounds, or deliverables beyond a standard post. Empty list if none. One entry per clause or deliverable.
+- `clause_ref`: where the clause is, exactly as the PDF numbers or labels it (e.g. `6.1`, `3.1(e)`, `Schedule A, A6`). If the PDF has no numbering, use the nearest heading. It is a location only: no description or reasoning.

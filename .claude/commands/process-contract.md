@@ -18,7 +18,11 @@ Run the `extractor` subagent with only the PDF path. Save its JSON, unchanged, t
 
 ## 2. Verify
 
-Run the `verifier` subagent with the PDF path and **only** a plain list of `field: value` pairs taken from the extractor JSON (plus the `extra_clauses` types). Don't pass pages, quotes, reasoning or any summary. Save its JSON to `out/<contract>_verifier.json`.
+Run the `verifier` subagent with the PDF path and **only**:
+- a plain list of `field: value` pairs taken from the extractor JSON
+- one line per `extra_clauses` entry: `type @ clause_ref (page N)`
+
+Don't pass quotes, reasoning or any summary. The clause reference says where to look; the verifier judges the label itself. Save its JSON to `out/<contract>_verifier.json`.
 
 ## 3. Gatekeeper (rules 1 to 7)
 
