@@ -6,7 +6,6 @@
 inbox/
 
 # Contract workflow inputs: contract PDFs and the price list stay local.
-# Contract 03 is a holdout and must never be in this repo.
 contracts/
 reference/
 
