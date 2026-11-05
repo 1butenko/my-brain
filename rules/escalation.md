@@ -24,11 +24,12 @@ Why these rules exist: a deal created from a misread contract puts a wrong numbe
 
 - **Condition:** any of these is true:
   - the verifier returns `mismatch` for any field
-  - the verifier returns `wrong_type` or `not_found` for any claimed clause: the two agents disagree about what a clause is
+  - the verifier returns `wrong_type`, `wrong_effect` or `not_found` for any claimed clause: the two agents disagree about what a clause is or does
   - `amount_in_words` doesn't equal `amount` in numbers
 - **Fields:** every extracted field, every entry in `extra_clauses`, plus `amount_in_words` against `amount`.
-- **Example:** page 2 says "$12,000 (ten thousand US dollars)", so the amount in words differs from the number. Or: the extractor labels clause 6.1 `exclusivity`, but the clause says no exclusivity is granted, so the verifier returns `wrong_type`.
+- **Example:** page 2 says "$12,000 (ten thousand US dollars)", so the amount in words differs from the number. Or: the extractor labels clause 6.1 `exclusivity`, but the clause says no exclusivity is granted, so the verifier returns `wrong_effect`.
 - **Why it changed (2026-11-05):** the verifier first got only clause types, with no location, so it could confirm a clause existed but not challenge its label. On contract 01 it missed a "no exclusivity" clause labelled exclusivity and standard items labelled custom.
+- **Changed again (2026-11-05):** with label checks on, contract 01 stopped on rule 2 six times, each time because the extractor labelled something it couldn't judge (standard versus custom needs the price list). The extractor now labels only the four rule 5 topics, says whether exclusivity is granted or denied, has no `other` type, and folds survival terms into their parent clause. Custom versus standard is decided only by the gatekeeper.
 
 ## 3. Amount below the price list
 
@@ -49,7 +50,7 @@ Why these rules exist: a deal created from a misread contract puts a wrong numbe
   - **usage rights** beyond performing the agreement and promoting the event, for example use of the other party's content or brand after the term, in paid ads, or with the right to sublicense. A mutual, non-exclusive name and logo licence limited to performing the agreement or promoting the event is standard and doesn't count.
   - a **perpetual license**, of any scope.
   - **extra revision rounds**.
-  - a **custom deliverable**: any deliverable that isn't in the matched price-list package. The extractor's `custom_deliverable` label is ignored; the gatekeeper compares the deliverables with the price list itself.
+  - a **custom deliverable**: any deliverable that isn't in the matched price-list package. Only the gatekeeper decides this, by comparing the deliverables with the price list. The extractor and verifier don't label deliverables.
 - **Fields:** `extra_clauses`, `deliverables`, the verifier's `unreported`, and the price list.
 - **Example:** page 4 says "Creator grants Brand a perpetual, worldwide license to use the content". Counter-example: "Each Party grants the other a non-exclusive, royalty-free licence to use its name and logo solely to perform this Agreement" doesn't fire.
 - **Why it changed (2026-11-05):** the first runs on contracts 01 and 02 fired on clause labels alone: a clause denying exclusivity, a standard mutual logo licence, and Gold-package items labelled custom. That buried the clauses that actually matter.

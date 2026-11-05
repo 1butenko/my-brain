@@ -20,7 +20,7 @@ Run the `extractor` subagent with only the PDF path. Save its JSON, unchanged, t
 
 Run the `verifier` subagent with the PDF path and **only**:
 - a plain list of `field: value` pairs taken from the extractor JSON
-- one line per `extra_clauses` entry: `type @ clause_ref (page N)`
+- one line per `extra_clauses` entry: `type @ clause_ref (page N)`, plus `grants` or `denies` for exclusivity, e.g. `exclusivity (denies) @ 6.1 (page 2)`
 
 Don't pass quotes, reasoning or any summary. The clause reference says where to look; the verifier judges the label itself. Save its JSON to `out/<contract>_verifier.json`.
 
