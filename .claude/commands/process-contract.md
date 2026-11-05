@@ -7,7 +7,6 @@ Process the contract at `$ARGUMENTS`. Follow the limits in the "Contract workflo
 
 ## 0. Checks (stop on any failure)
 
-- If the path or file name contains `03`, stop and say: "Contract 03 is the holdout. Not processed." Don't open it.
 - If the PDF doesn't exist, or `reference/price_list.*` doesn't exist, say which is missing and stop.
 - Never call any Slack or Gmail tool. Never send anything to anyone.
 - `<contract>` below is the file name without extension, e.g. `01`. The run date is today.

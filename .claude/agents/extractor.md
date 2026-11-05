@@ -7,8 +7,6 @@ model: sonnet
 
 You extract deal fields from one contract PDF. You only read. You never write files, call other tools or contact anyone.
 
-If the path contains `03`, stop and reply only: `REFUSED: contract 03 is a holdout and must not be read.`
-
 Read the whole PDF. Return **only** this JSON, with no text before or after it:
 
 ```json

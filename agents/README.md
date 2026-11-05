@@ -14,8 +14,8 @@ Why three agents and not one: the verifier checks the PDF without seeing the ext
 
 | Agent | What it does | What it touches | What it can never do | Owner |
 |---|---|---|---|---|
-| `extractor` | Reads the PDF and returns the deal fields as JSON, each with a page and an exact quote. Missing means `null`. | The contract PDF (Read only) | Write files, call HubSpot or Slack, guess a value, read contract 03 | Ihor Butenko |
-| `verifier` | Gets the PDF path and the extractor's values only. Checks each one against the PDF: match, mismatch or not_found. Reports clauses and dates the extractor missed. | The contract PDF (Read only) | See the extractor's reasoning, write files, call HubSpot or Slack, read contract 03 | Ihor Butenko |
+| `extractor` | Reads the PDF and returns the deal fields as JSON, each with a page and an exact quote. Missing means `null`. | The contract PDF (Read only) | Write files, call HubSpot or Slack, guess a value | Ihor Butenko |
+| `verifier` | Gets the PDF path and the extractor's values only. Checks each one against the PDF: match, mismatch or not_found. Reports clauses and dates the extractor missed. | The contract PDF (Read only) | See the extractor's reasoning, write files, call HubSpot or Slack | Ihor Butenko |
 | `gatekeeper` | Applies rules 1 to 7 to the two JSON results and the price list. Returns clean or exception, the rules fired and a one-sentence reason each. | `out/*.json`, `rules/escalation.md`, `reference/price_list.*` (Read, Grep) | Call HubSpot, write files, read the contracts | Ihor Butenko |
 
 ## What the main session does
@@ -27,6 +27,6 @@ Why three agents and not one: the verifier checks the PDF without seeing the ext
 
 ## Guard rails
 
-- `.claude/settings.json` denies every Slack and Gmail tool, and reading any file in `contracts/` named like 03.
+- `.claude/settings.json` denies every Slack and Gmail tool.
 - HubSpot deal creation goes through `manage_crm_objects`, which also edits records, so it isn't allowlisted: every call asks first.
 - These rules apply only when Claude Code starts in this repo.

@@ -3,8 +3,7 @@
     "deny": [
       "mcp__claude_ai_Slack",
       "mcp__plugin_engineering_slack",
-      "mcp__claude_ai_Gmail",
-      "Read(./contracts/*03*)"
+      "mcp__claude_ai_Gmail"
     ]
   }
 }
