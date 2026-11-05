@@ -4,3 +4,8 @@
 # Raw intake: may contain unsigned contracts, receipts, private emails.
 # Write up what belongs in the brain as docs; never commit raw intake.
 inbox/
+
+# Contract workflow inputs: contract PDFs and the price list stay local.
+# Contract 03 is a holdout and must never be in this repo.
+contracts/
+reference/

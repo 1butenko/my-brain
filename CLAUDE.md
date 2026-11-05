@@ -72,3 +72,16 @@ Apply these rules in order. Stop at the first one that settles it:
 4. **Still unclear? The owner decides.** Don't pick a winner yourself. Name the conflicting documents, ask the area's owner (see Ownership), and once they decide, record it as a decision doc.
 
 When you answer from this repo and find a conflict, say which source you used and which rule settled it.
+
+## Contract workflow
+
+Contracts become HubSpot deals through `/process-contract contracts/<name>.pdf`: three subagents (`extractor`, `verifier`, `gatekeeper`, see `agents/README.md`), then routing by the main session. The 8 escalation rules live in `rules/escalation.md`. Results go to `out/`, exception drafts to `outbox/slack-drafts/`.
+
+Limits, always:
+
+1. **No Slack, ever.** Don't call, read, draft or send anything in Slack. All Slack tools are denied in `.claude/settings.json`.
+2. **Exceptions are never sent.** Each one becomes a markdown file in `outbox/slack-drafts/` with the exact text to post later. Ihor sends it.
+3. **HubSpot:** searching deals and companies is allowed. Create a deal only after Ihor approves that specific deal in the chat, and say which HubSpot account is connected before the first write. Never edit, overwrite or delete an existing record.
+4. **No emails or messages to anyone outside.** No passwords, API keys, tokens or personal data in committed files.
+5. **Contract 03 is a holdout.** Never open, read or process it, and don't tune rules or prompts for it. If a file named like 03 appears, stop and tell Ihor.
+6. **Never guess a missing value.** Leave the field empty and escalate.
