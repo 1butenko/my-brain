@@ -9,3 +9,7 @@ inbox/
 # Contract 03 is a holdout and must never be in this repo.
 contracts/
 reference/
+
+# Contract workflow results: they quote contract text and signatory names.
+out/*.json
+outbox/slack-drafts/*.md
