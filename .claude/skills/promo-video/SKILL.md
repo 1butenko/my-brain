@@ -80,6 +80,8 @@ Videos are built and rendered with **Remotion**. The Remotion skills are install
 
 Use only these colours.
 
+**Accent is not a text colour on light backgrounds.** Accent `#5197FF` has a contrast of only 1.7 to 2.1:1 on the gradient colours and 2.6:1 on Light text `#F4F4F8`, both below the 3:1 minimum for large text. On light backgrounds, use accent only for shapes (an underline, a bar, a pill behind Ink text) and keep the words in Ink. Accent text is fine on Dark background `#07070B` (about 6.9:1).
+
 ### Gradient
 
 Light blue, pink and lavender, as in the banner (`assets/banner.png`). Use it as the main light background.
@@ -128,6 +130,7 @@ Light blue, pink and lavender, as in the banner (`assets/banner.png`). Use it as
 - [ ] Idea, headline and call to action match what the requester approved
 - [ ] Every scene carries one idea only
 - [ ] Only kit colours are used
+- [ ] No accent-coloured text on a light background (accent there is only an underline, bar or pill)
 - [ ] All text is Inter Tight, weight 400 to 800
 - [ ] Logo is unchanged (not recoloured, stretched or cropped) and sits only on light backgrounds
 - [ ] Gradient uses light blue, pink and lavender
