@@ -108,9 +108,10 @@ Light blue, pink and lavender, as in the banner (`assets/banner.png`). Use it as
 - **Fades** last **at least 30 frames (1 s at 30 fps)**, with eased timing (ease-in-out, or `springTiming` with no overshoot). Never use `linearTiming` without an easing.
 - **Light to dark is slower.** Any change between a dark scene and a light one (gradient or Light text) is a `fade()` of **at least 45 frames (1.5 s)**, so the brightness doesn't jump.
 - **Use at least 2 real transitions.** At least 2 scene changes per video use `slide()`, `wipe()` or a scale presentation (the incoming scene grows from about 92% to 100% while the outgoing one fades). They are eased like fades (ease-in-out, or `springTiming` with no overshoot) and only go between two scenes of the same brightness (light to light, or dark to dark).
+- **A real transition must be visible.** Text is already gone when a transition starts, so the two scenes' backgrounds must look clearly different, for example the gradient and a solid Light text `#F4F4F8` background. A slide or wipe between two identical backgrounds (two flat dark scenes, or the same drifting gradient) can't be seen and doesn't count towards the 2. Check it on the still from the middle of each transition.
 - **Never a hard flash.** No transition passes through a white or black frame, and none flashes, glitches, shakes, zoom-punches or pixelates.
 - **Gentle text.** Text fades in over **at least 20 frames** and rises by no more than 40 px. If there are several lines, start each one 8 to 10 frames after the one before.
-- **Texts never overlap.** A scene's text must finish fading out before its `fade()` begins, so two scenes' texts are never on screen together.
+- **Texts never overlap.** A scene's text must finish fading out before its outgoing transition begins, so two scenes' texts are never on screen together. The next scene's text may start fading in during the transition, once the old text is gone. Use this to avoid long empty screens, especially around the slow fade from dark to light.
 - **Give the viewer time to read.** Each scene holds its text, fully visible, for at least 1.5 s. Remember that each transition shortens the timeline by its own length, so add that time back to the scene durations.
 - **The background keeps moving.** The gradient drifts slowly across the whole video and never snaps.
 
@@ -132,7 +133,7 @@ Light blue, pink and lavender, as in the banner (`assets/banner.png`). Use it as
 - [ ] Gradient uses light blue, pink and lavender
 - [ ] Hook: motion from frame 0 and the core message fully visible within 1 s
 - [ ] No sudden transitions: every fade lasts at least 1 s (1.5 s between dark and light), every transition is eased, and none flashes
-- [ ] At least 2 real transitions (slide, wipe or scale), each between scenes of the same brightness
+- [ ] At least 2 real transitions (slide, wipe or scale), each between scenes of the same brightness but with clearly different backgrounds, visible on the mid-transition still
 - [ ] Music has a clear beat, every transition starts on a beat, and the track fades out at the end
 - [ ] Music licence allows commercial use; source and licence are noted in the hand-over and `CREDITS.md`
 - [ ] No two scenes' texts are on screen at the same time (check the stills taken at the middle of each transition)
