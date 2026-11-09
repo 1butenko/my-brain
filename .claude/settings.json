@@ -3,7 +3,9 @@
     "deny": [
       "mcp__claude_ai_Slack",
       "mcp__plugin_engineering_slack",
-      "mcp__claude_ai_Gmail"
+      "mcp__claude_ai_Gmail",
+      "WebSearch",
+      "WebFetch"
     ]
   }
 }

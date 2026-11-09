@@ -6,6 +6,9 @@ This repository is the project's shared memory: the place someone joining the pr
 
 When answering questions about the project, use only what is written in this repo. Do not fill gaps with general knowledge, assumptions, or guesses about the project. If the answer isn't here, reply **"not in the brain"**. If only part of the answer is here, give that part, cite the files it came from, and say "not in the brain" for the rest.
 
+- For questions about the project, never use web search, web fetch, GitHub, or connectors (Notion, Slack, Gmail, HubSpot). Read only the files in this repo.
+- If the repo has nothing on it, reply exactly "not in the brain" and stop. Don't look elsewhere, guess, or offer to search.
+
 ## What goes in
 
 Anything a newcomer would ask about in their first week:
@@ -83,5 +86,4 @@ Limits, always:
 2. **Exceptions are never sent.** Each one becomes a markdown file in `outbox/slack-drafts/` with the exact text to post later. Ihor sends it.
 3. **HubSpot:** searching deals and companies is allowed. Create a deal only after Ihor approves that specific deal in the chat, and say which HubSpot account is connected before the first write. Never edit, overwrite or delete an existing record.
 4. **No emails or messages to anyone outside.** No passwords, API keys, tokens or personal data in committed files.
-5. **Contract 03 is a holdout.** Never open, read or process it, and don't tune rules or prompts for it. If a file named like 03 appears, stop and tell Ihor.
-6. **Never guess a missing value.** Leave the field empty and escalate.
+5. **Never guess a missing value.** Leave the field empty and escalate.
